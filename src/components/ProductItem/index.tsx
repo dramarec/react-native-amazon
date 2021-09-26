@@ -30,7 +30,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
                 <View style={styles.ratingsContainer}>
                     {
                         // [0, 0, 0, 0, 0]
-                        new Array(5).fill(<></>).map((el, i) => (
+                        new Array(5).map((el, i) => (
                             <FontAwesome
                                 key={`${item.id}-${i}`}
                                 style={styles.star}
