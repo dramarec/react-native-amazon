@@ -18,9 +18,9 @@ const App = () => {
             <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
             />
-            {/* <ProductScreen /> */}
+            <ProductScreen />
             {/* <HomeScreen /> */}
-            <ShopingCartScreen />
+            {/* <ShopingCartScreen /> */}
         </SafeAreaView>
     )
 }

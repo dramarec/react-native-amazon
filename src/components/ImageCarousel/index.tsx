@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useRef } from 'react'
 import {
     View,
     Image,
@@ -15,12 +15,13 @@ const ImageCarousel = ({ images }: IProps) => {
     const [activeIndex, setActiveIndex] = useState(1)
     const windowWidth = useWindowDimensions().width
 
-    const onFlatlistUpdate = useCallback(({ viewableItems }) => {
+    const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
+    const onFlatlistUpdate = useRef(({ viewableItems }: any) => {
+        console.log("🔥🚀 ===> onFlatlistUpdate ===>", viewableItems)
         if (viewableItems.length > 0) {
             setActiveIndex(viewableItems[0].index || 0)
         }
-        console.log(viewableItems)
-    }, [])
+    })
 
     return (
         <View style={styles.root}>
@@ -38,10 +39,8 @@ const ImageCarousel = ({ images }: IProps) => {
                 snapToInterval={windowWidth - 20}
                 snapToAlignment={'center'}
                 decelerationRate={'fast'}
-                viewabilityConfig={{
-                    viewAreaCoveragePercentThreshold: 50,
-                }}
-                onViewableItemsChanged={onFlatlistUpdate}
+                viewabilityConfig={viewConfigRef.current}
+                onViewableItemsChanged={onFlatlistUpdate.current}
             />
 
             <View style={styles.dots}>
@@ -87,3 +86,5 @@ const styles = StyleSheet.create({
 })
 
 export default ImageCarousel
+
+// https://stackoverflow.com/questions/48045696/flatlist-scrollview-error-on-any-state-change-invariant-violation-changing-on/57502343#_=
