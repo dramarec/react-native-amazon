@@ -1,6 +1,7 @@
 import React from 'react'
-import { Image, View, Text } from 'react-native'
+import { Image, View, Text, Pressable } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useNavigation } from '@react-navigation/native'
 import styles from './styles'
 
 interface ProductItemProps {
@@ -16,36 +17,31 @@ interface ProductItemProps {
 }
 
 const ProductItem = ({ item }: ProductItemProps) => {
+    // const navigation = useNavigation()
+
+    // const onPress = () => {
+    //     navigation.navigate('ProductDetails', { id: item.id })
+    // }
     return (
-        <View style={styles.root}>
-
+        <Pressable /* onPress={onPress} */ style={styles.root}>
             <Image style={styles.image} source={{ uri: item.image }} />
-
             <View style={styles.rightContainer}>
                 <Text style={styles.title} numberOfLines={3}>
                     {item.title}
                 </Text>
-
-                { /* Ratings */}
+                {/* Ratings */}
                 <View style={styles.ratingsContainer}>
-                    {
-                        // [0, 0, 0, 0, 0]
-                        new Array(5).map((el, i) => (
-                            <FontAwesome
-                                key={`${item.id}-${i}`}
-                                style={styles.star}
-                                name={
-                                    i < Math.floor(item.avgRating)
-                                        ? 'star'
-                                        : 'star-o'
-                                }
-                                size={18}
-                                color={'#e47911'}
-                            />
-                        ))}
+                    {[0, 0, 0, 0, 0].map((el, i) => (
+                        <FontAwesome
+                            key={`${item.id}-${i}`}
+                            style={styles.star}
+                            name={i < Math.floor(item.avgRating) ? 'star' : 'star-o'}
+                            size={18}
+                            color={'#e47911'}
+                        />
+                    ))}
                     <Text>{item.ratings}</Text>
                 </View>
-
                 <Text style={styles.price}>
                     from ${item.price}
                     {item.oldPrice && (
@@ -53,7 +49,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
                     )}
                 </Text>
             </View>
-        </View>
+        </Pressable>
     )
 }
 
