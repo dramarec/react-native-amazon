@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React from 'react'
+import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 interface Props {
     item: string;
@@ -8,14 +8,14 @@ interface Props {
 
 const ListItem = ({ item }: Props) => {
     return (
-        <TouchableOpacity style={styles.ListItem}>
-            <View style={styles.listItemView}>
-                <Text style={styles.listItemText}>{item}</Text>
-                <Icon name="remove" size={20} />
+        <TouchableOpacity style={ styles.ListItem }>
+            <View style={ styles.listItemView }>
+                <Text style={ styles.listItemText }>{ item }</Text>
+                <Icon name="remove" size={ 20 } />
             </View>
         </TouchableOpacity>
-    );
-};
+    )
+}
 const styles = StyleSheet.create({
     ListItem: {
         padding: 15,
@@ -31,5 +31,5 @@ const styles = StyleSheet.create({
     listItemText: {
         fontSize: 18,
     },
-});
-export default ListItem;
+})
+export default ListItem
